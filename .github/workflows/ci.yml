@@ -43,9 +43,7 @@ jobs:
       # 5. Install Node.js dependencies
       - name: Install Node.js dependencies
         working-directory: ./bookstore
-        run: |
-           npm install
-           npm install playwright
+        run: npm ci
 
       # 7. Start FastAPI server in background
       - name: Start FastAPI Server
