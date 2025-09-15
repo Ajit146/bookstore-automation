@@ -45,16 +45,11 @@ jobs:
         working-directory: ./bookstore
         run: npm install
 
-      # 6. Install Playwright browsers
-      - name: Install Playwright Browsers
-        working-directory: ./bookstore
-        run: npx playwright install --with-deps
-
       # 7. Start FastAPI server in background
       - name: Start FastAPI Server
         working-directory: ./bookstore
         run: |
-          nohup uvicorn bookstore.main:app --host 0.0.0.0 --port 8000 &
+          nohup uvicorn bookstore.main:app --host 0.0.0.0 --port 8000 & 
           sleep 5
 
       # 8. Run API automation tests
