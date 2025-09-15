@@ -25,7 +25,6 @@ test.describe('Books API - Negative Scenarios', () => {
   });
 
   test('Fail to delete non-existing book', async ({ request }) => {
-    // try deleting something invalid
     const response = await request.delete(`${getBaseURL()}/books/99999`, {
       headers: getHeaders(),
     });

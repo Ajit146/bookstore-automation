@@ -1,7 +1,5 @@
-// tests/api/config.ts
 import { execSync } from "child_process";
 
-// Define configuration for all environments
 const environments = {
   dev: {
     baseURL: "http://127.0.0.1:8000",
@@ -17,7 +15,6 @@ const environments = {
   },
 };
 
-// Determine environment from ENV variable (default: dev)
 const env = process.env.ENV || "dev";
 const config = environments[env as keyof typeof environments];
 

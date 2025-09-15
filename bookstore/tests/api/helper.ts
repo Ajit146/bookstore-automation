@@ -1,7 +1,5 @@
-// tests/api/helper.ts
 import { execSync } from "child_process";
 
-// Base URL and token command directly in helper
 const baseURL = "http://127.0.0.1:8000";
 const tokenScript = "python3 -m bookstore.generate_token";
 
