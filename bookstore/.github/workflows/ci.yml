@@ -4,10 +4,10 @@ name: Playwright API Tests
 on:
   push:
     branches:
-      - bookstore-automation
+      - main
   pull_request:
     branches:
-      - bookstore-automation
+      - main
 
 jobs:
   test:
