@@ -6,7 +6,7 @@ test.describe('Books API CRUD', () => {
 
   test('Create book', async ({ request }) => {
     const payload = {
-      id: 18,
+      id: 23,
       name: 'Playwright Automation',
       author: 'Automation Tester',
       published_year: 2025,
