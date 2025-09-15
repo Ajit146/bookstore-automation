@@ -1,5 +1,5 @@
 export const createBookPayload = {
-  id: 25,
+  id: Math.floor(Math.random() * 100000), // generates random ID
   name: 'Playwright Automation',
   author: 'Automation Tester',
   published_year: 2025,

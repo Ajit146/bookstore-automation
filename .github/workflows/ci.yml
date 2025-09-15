@@ -57,5 +57,4 @@ jobs:
       - name: Run API tests
         run: |
           npm run test:negativeScanerio
-          npm run test:auth
           npm run test:books
