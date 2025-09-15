@@ -51,7 +51,7 @@ jobs:
       - name: Start FastAPI Server
         working-directory: ./bookstore
         env:
-        PYTHONPATH: ${{ github.workspace }}/bookstore
+          PYTHONPATH: ${{ github.workspace }}/bookstore
         run: |
           nohup uvicorn bookstore.main:app --host 0.0.0.0 --port 8000 & 
           sleep 5
