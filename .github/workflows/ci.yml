@@ -1,17 +1,19 @@
 name: Playwright API Tests
 
-# Trigger workflow on push and pull request to main branch
+# Trigger workflow on push or pull request to main branch
 on:
   push:
     branches:
       - main
+      - bookstore-automation
   pull_request:
     branches:
       - main
+      - bookstore-automation
 
 jobs:
   test:
-    name: Run Playwright Tests
+    name: Run Playwright API Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -19,20 +21,43 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Setup Node.js environment
+      # 2. Setup Python for API server
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      # 3. Setup Node.js environment for Playwright
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # 3. Install dependencies
-      - name: Install dependencies
+      # 4. Install Python dependencies for API
+      - name: Install Python dependencies
+        working-directory: ./bookstore
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 5. Install Node.js dependencies
+      - name: Install Node.js dependencies
+        working-directory: ./bookstore
         run: npm install
 
-      # 4. Install Playwright browsers
+      # 6. Install Playwright browsers
       - name: Install Playwright Browsers
+        working-directory: ./bookstore
         run: npx playwright install --with-deps
 
-      # 5. Run your API tests
+      # 7. Start FastAPI server in background
+      - name: Start FastAPI Server
+        working-directory: ./bookstore
+        run: |
+          nohup uvicorn bookstore.main:app --host 0.0.0.0 --port 8000 &
+          sleep 5
+
+      # 8. Run API automation tests
       - name: Run API tests
+        working-directory: ./bookstore
         run: npx playwright test --reporter=list
