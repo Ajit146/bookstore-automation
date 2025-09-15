@@ -55,4 +55,5 @@ jobs:
 
       # 9. Run API automation tests
       - name: Run API tests
-        run: npx playwright test --config=bookstore/playwright.config.ts --project=API --reporter=list
+        working-directory: ./bookstore
+        run: npx playwright test --config=playwright.config.ts --project=API --reporter=list
