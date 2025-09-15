@@ -49,7 +49,6 @@ jobs:
 
       # 7. Start FastAPI server in background
       - name: Start FastAPI Server
-        working-directory: ./bookstore
         env:
           PYTHONPATH: ${{ github.workspace }}/bookstore
         run: |
