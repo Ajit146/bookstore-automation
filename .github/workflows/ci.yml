@@ -53,12 +53,6 @@ jobs:
           nohup uvicorn bookstore.main:app --host 0.0.0.0 --port 8000 & 
           sleep 5
 
-      # 8. detecting the test
-      - name: List detected Playwright tests
-        working-directory: ./bookstore
-        run: npx playwright show-tests --config=playwright.config.ts
-
       # 9. Run API automation tests
       - name: Run API tests
-        working-directory: ./bookstore
-        run: npx playwright test --config=playwright.config.ts --project=API --reporter=list
+        run: npx playwright test --config=bookstore/playwright.config.ts --project=API --reporter=list
