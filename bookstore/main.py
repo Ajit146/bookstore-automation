@@ -2,15 +2,18 @@
 
 from datetime import timedelta
 
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
+from passlib.context import CryptContext
 
-from bookmgmt import router as book_router
-from database import UserCredentials, get_db
-from utils import create_access_token
+# ✅ FIXED imports (use bookstore. prefix)
+from bookstore.bookmgmt import router as book_router
+from bookstore.database import UserCredentials, get_db
+from bookstore.utils import create_access_token
 
 app = FastAPI()
 
+# include book router
 app.include_router(book_router, tags=["Books"])
 
 
@@ -18,9 +21,6 @@ app.include_router(book_router, tags=["Books"])
 async def get_health():
     return {"status": "up"}
 
-
-from fastapi import HTTPException
-from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
